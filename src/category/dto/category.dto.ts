@@ -5,5 +5,5 @@ export class CategoryDto {
 	name: string
 
 	@IsString()
-	image: String
+	image: string
 }

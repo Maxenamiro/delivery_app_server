@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { returnCategoryObject } from './return-category.objects'
 import { generateSlug } from 'src/utils/generate-slug'
+import { CategoryDto } from './dto/category.dto'
+import { PrismaService } from 'src/prisma.service'
+import { IsString } from 'class-validator'
 
 @Injectable()
 export class CategoryService {
@@ -43,11 +46,12 @@ export class CategoryService {
 		return this.prisma.category.create({
 			data: {
 				name: '',
-				skug: '',
+				slug: '',
 				image: ''
 			}
 		})
 	}
+
 	async update(id: string, dto: CategoryDto) {
 		return this.prisma.category.update({
 			where: {
@@ -56,7 +60,7 @@ export class CategoryService {
 			data: {
 				name: dto.name,
 				slug: generateSlug(dto.name),
-				image: dto.image
+				image: dto.image //-----------------------> wo za huinia?????
 			}
 		})
 	}
